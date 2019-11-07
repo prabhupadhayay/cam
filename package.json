@@ -1,0 +1,23 @@
+{
+  "name": "cam",
+  "version": "1.0.0",
+  "description": "crawl based API",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "prabh",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.4"
+  },
+  "engines": {
+  "node": "10.10.0",
+  "npm": "6.4.1"
+  }
+}
