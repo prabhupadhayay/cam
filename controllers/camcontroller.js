@@ -7,15 +7,15 @@ const fs = require('fs')
 const router = express.Router();
 
 router.get('/fetch_media_items', (req, res) => {
-    axios.get('https://www.amazon.in/gp/product/B07TWFVDWT?pf_rd_p=649eac15-05ce-45c0-86ac-3e413b8ba3d4&pf_rd_r=SPH3S2V8RGYVNXR28G9W')
+    axios.get('https://chaturbate.com/pixiepixelized')
         .then((response) => {
             //  if(res.status === 200) {
                 //console.log(response)
             const html = response.data;
             const $ = cheerio.load(html);
-            //console.log($);
+            console.log($);
             let devtoList1 = [];
-            $('.dp').each(function (i, elem) {
+            $('.user_upload').each(function (i, elem) {
                 devtoList1[i] = {
                     mediaTitle: $(this).find('.title').text(),
                     previewUrl: $(this).find('.title').prev('.preview').attr('src'),
@@ -35,7 +35,7 @@ router.get('/fetch_media_items', (req, res) => {
              console.log(devtoList1);
             // console.log("trim");
             const devtoListTrimmed = devtoList1.filter(n => n != undefined )
-            fs.writeFile('devtoList1.json',
+            fs.writeFile('devtoList2.json',
                 JSON.stringify(devtoListTrimmed, null, 4),
                 (err) => console.log('File successfully written!'))
            //  }
@@ -46,18 +46,18 @@ router.get('/fetch_media_items', (req, res) => {
 });
 
 
-router.get('/fetchmodels',(req,res) =>{
-    let url = 'https://chaturbate.com/affiliates/api/onlinerooms/?format=json&wm=CGTdY'
-    let data;
-     axios.get(url)
-    .then(response => {
-        data = response.data;
-    })
-    .catch(e => {
-        console.log('Error while fetching online models error ' + e)
-    })
-return data
-})
+// router.get('/fetchmodels',(req,res) =>{
+//     let url = 'https://chaturbate.com/affiliates/api/onlinerooms/?format=json&wm=CGTdY'
+//     let data;
+//      axios.get(url)
+//     .then(response => {
+//         data = response.data;
+//     })
+//     .catch(e => {
+//         console.log('Error while fetching online models error ' + e)
+//     })
+// return data
+// })
 
 
 module.exports = router;

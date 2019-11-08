@@ -14,7 +14,7 @@ const articleSchema = new Schema({
         type: String
     },
     display_name: {
-        type: Number
+        type: String
     },
     tags: {
         type: Array
@@ -31,12 +31,12 @@ const articleSchema = new Schema({
     location: {
         type: String
     },
-    block_from_states: {
-        type: String
-    },
-    chat_room_url_revshare: {
-        type: String
-    },
+    // block_from_states: {
+    //     type: String
+    // },
+    // chat_room_url_revshare: {
+    //     type: String
+    // },
     username: {
         type: String
     },
@@ -52,12 +52,12 @@ const articleSchema = new Schema({
     birthday: {
         type: String
     },
-    chat_room_url: {
-        type: Boolean
-    },
-    block_from_countries: {
-        type: String
-    },
+    // chat_room_url: {
+    //     type: Boolean
+    // },
+    // block_from_countries: {
+    //     type: String
+    // },
     seconds_online: {
         type: Number
     },
