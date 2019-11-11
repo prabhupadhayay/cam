@@ -31,7 +31,7 @@ async function scrap_model_html(username) {
         })
         
        // console.log(data)
-       response.send(data);
+       //response.send(data);
     return data
     
 }
