@@ -181,45 +181,43 @@ function parse_html(model_user_name, html) {
 /**
  * POST data to remote API
  */
-function post_to_api() {
-    const api_url = 'http://3.88.83.158:81/api/chaturbateBio/createList';
+// function post_to_api() {
+//     const api_url = 'http://3.88.83.158:81/api/chaturbateBio/createList';
 
-    axios.post(api_url,data)
-        .then(function(response){
-            if(response.status === 200) {
-                //console.log(response)
-            console.log('Success from API');
-            }
-        })
-        .catch(function(error){
-            console.log('Error while posting to API : ' + error)
-        });
-}
+//     axios.post(api_url,data)
+//         .then(function(response){
+//             if(response.status === 200) {
+//                 //console.log(response)
+//             console.log('Success from API');
+//             }
+//         })
+//         .catch(function(error){
+//             console.log('Error while posting to API : ' + error)
+//         });
+// }
 
 /**
  * Bootstrap method to initialize crawler
  */
-async function main() {
+async function main(req,res) {
 
     var model_page_html = '';
     var parsed_bio = '';
 
     try {
         let online_models_dump = await get_online_models();
-        
         var i = 1;
 
         for (model in online_models_dump) {
             model_user_name = online_models_dump[model]['username']
             model_page_html = await scrap_model_html(model_user_name);
             parsed_bio = await parse_html(model_user_name, model_page_html);
-            post_to_api(parsed_bio);
+            //post_to_api(parsed_bio);
             console.log(i + ' From total ' + online_models_dump.length);
-            // console.log('--------------------');
-            // console.log(parsed_bio)
-            
+            console.log('--------------------');
+            console.log(parsed_bio)
+            //res.json(parsed_bio)
             i++;
-            
         }
 
     } catch (e) {
@@ -228,16 +226,5 @@ async function main() {
 }
 
 exports.createList = async function (req, res) {
-    let url = 'https://chaturbate.com/affiliates/api/onlinerooms/?format=json&wm=CGTdY'
-    let data;
-
-    await axios.get(url)
-        .then(response => {
-            data = response.data;
-        })
-        .catch(e => {
-            console.log('Error while fetching online models error ' + e)
-        })
-        res.send(data)
-        return data;
+    main();
 };
