@@ -6,14 +6,14 @@ const cheerio = require('cheerio')
 const fs = require('fs')
 const router = express.Router();
 
-router.get('/fetch_media_items', (req, res) => {
-    axios.get('https://chaturbate.com/pixiepixelized')
+router.get('/fetch_media_items',async (req, res) => {
+    await axios.get('https://chaturbate.com/katy_18_pocahontas')
         .then((response) => {
             //  if(res.status === 200) {
                 //console.log(response)
             const html = response.data;
             const $ = cheerio.load(html);
-            console.log($);
+            //console.log($);
             let devtoList1 = [];
             $('.user_upload').each(function (i, elem) {
                 devtoList1[i] = {

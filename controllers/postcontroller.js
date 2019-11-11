@@ -14,6 +14,7 @@ async function get_online_models() {
             console.log('Error while fetching online models error ' + e)
         })
     return data
+    
 }
 
 async function scrap_model_html(username) {
@@ -28,7 +29,11 @@ async function scrap_model_html(username) {
         .catch(e => {
             console.log('Error while fetching online models, cause : ' + e)
         })
+        
+       // console.log(data)
+       response.send(data);
     return data
+    
 }
 
 function fetch_media_items($) {
@@ -177,15 +182,18 @@ function parse_html(model_user_name, html) {
  * POST data to remote API
  */
 function post_to_api() {
-    // const api_url = '';
+    const api_url = 'http://3.88.83.158:81/api/chaturbateBio/createList';
 
-    // axios.post(api_url,data)
-    //     .then(function(response){
-    //         console.log('Success from API');
-    //     })
-    //     .catch(function(error){
-    //         console.log('Error while posting to API : ' + error)
-    //     });
+    axios.post(api_url,data)
+        .then(function(response){
+            if(response.status === 200) {
+                //console.log(response)
+            console.log('Success from API');
+            }
+        })
+        .catch(function(error){
+            console.log('Error while posting to API : ' + error)
+        });
 }
 
 /**
@@ -206,9 +214,11 @@ async function main() {
             parsed_bio = await parse_html(model_user_name, model_page_html);
             post_to_api(parsed_bio);
             console.log(i + ' From total ' + online_models_dump.length);
-            console.log('--------------------');
-            console.log(model_page_html)
+            // console.log('--------------------');
+            // console.log(parsed_bio)
+            response.data(parsed_bio)
             i++;
+            
         }
 
     } catch (e) {
