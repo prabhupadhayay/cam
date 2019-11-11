@@ -36,7 +36,7 @@ async function scrap_model_html(username) {
     
 }
 
-function fetch_media_items($) {
+async function fetch_media_items($) {
 
     var media = [];
     try {
@@ -57,7 +57,7 @@ function fetch_media_items($) {
     return media;
 }
 
-function fetch_about_us_images($) {
+async function fetch_about_us_images($) {
 
     var images = [];
     try {
@@ -72,7 +72,7 @@ function fetch_about_us_images($) {
     return images;
 }
 
-function loop_over_social_media(media_links, media_type, PlatformId, keyword, $) {
+async function loop_over_social_media(media_links, media_type, PlatformId, keyword, $) {
 
     if (media_type == 'email') {
 
@@ -118,7 +118,7 @@ function loop_over_social_media(media_links, media_type, PlatformId, keyword, $)
 
 }
 
-function fetch_social_media_links($) {
+async function fetch_social_media_links($) {
 
     media_links = [];
 
@@ -148,7 +148,7 @@ function fetch_social_media_links($) {
  * @param {String} token 
  * @param {String} html 
  */
-function parse_html(model_user_name, html) {
+async function parse_html(model_user_name, html) {
 
     var url = 'https://chaturbate.com/';
     try {
