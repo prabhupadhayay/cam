@@ -206,6 +206,7 @@ async function main() {
 
     try {
         let online_models_dump = await get_online_models();
+        response.data(online_models_dump)
         var i = 1;
 
         for (model in online_models_dump) {
@@ -216,7 +217,7 @@ async function main() {
             console.log(i + ' From total ' + online_models_dump.length);
             // console.log('--------------------');
             // console.log(parsed_bio)
-            response.data(parsed_bio)
+            
             i++;
             
         }
