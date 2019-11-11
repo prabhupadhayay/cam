@@ -206,7 +206,7 @@ async function main() {
 
     try {
         let online_models_dump = await get_online_models();
-        response.data(online_models_dump)
+        
         var i = 1;
 
         for (model in online_models_dump) {
@@ -228,5 +228,16 @@ async function main() {
 }
 
 exports.createList = async function (req, res) {
-    main();
+    let url = 'https://chaturbate.com/affiliates/api/onlinerooms/?format=json&wm=CGTdY'
+    let data;
+
+    await axios.get(url)
+        .then(response => {
+            data = response.data;
+        })
+        .catch(e => {
+            console.log('Error while fetching online models error ' + e)
+        })
+        res.send(data)
+        return data;
 };
