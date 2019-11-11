@@ -14,10 +14,11 @@
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
+    "mongoose": "^5.7.9",
     "nodemon": "^1.19.4"
   },
   "engines": {
-  "node": "10.10.0",
-  "npm": "6.4.1"
+    "node": "10.10.0",
+    "npm": "6.4.1"
   }
 }
