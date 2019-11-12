@@ -14,7 +14,7 @@ async function get_online_models() {
             console.log('Error while fetching online models error ' + e)
         })
     return data
-    
+
 }
 
 async function scrap_model_html(username) {
@@ -29,19 +29,24 @@ async function scrap_model_html(username) {
         .catch(e => {
             console.log('Error while fetching online models, cause : ' + e)
         })
-        
-       // console.log(data)
-       //response.send(data);
+
+     console.log(data)
+    //response.send(data);
     return data
-    
+
 }
 
 async function fetch_media_items($) {
 
     var media = [];
     try {
-        $('.user_upload').each(function (i) {
+         $('.userUpload').next('dd').each(function (i){ // Ref
+
+        // $('.bio-container').each(function (i) {
             var item = {};
+
+
+         
             item.mediaTitle = $(this).find('.title').text();
             item.previewUrl = $(this).find('.title').prev('.preview').attr('src');
             item.lockUrl = 'https://ssl-ccstatic.highwebmedia.com/images/locked_rectangle4.png';
@@ -169,9 +174,10 @@ async function parse_html(model_user_name, html) {
         obj.bodyDecoration = $(":contains('Body Decorations')").next('dd').text();
         obj.aboutText = $(":contains('About Me')").next('dd').text();
         obj.aboutImageItems = fetch_about_us_images($);
+        // console.log(aboutImageItems)
         obj.mediaItems = fetch_media_items($);
         data.push(obj);
-
+        //console.log("________________________" + obj.aboutText)
     } catch (e) {
         console.log(e);
     }
@@ -199,7 +205,7 @@ async function parse_html(model_user_name, html) {
 /**
  * Bootstrap method to initialize crawler
  */
-async function main(req,res) {
+async function main(req, res) {
 
     var model_page_html = '';
     var parsed_bio = '';
@@ -213,9 +219,10 @@ async function main(req,res) {
             model_page_html = await scrap_model_html(model_user_name);
             parsed_bio = await parse_html(model_user_name, model_page_html);
             //post_to_api(parsed_bio);
+            console.log(parsed_bio)
             console.log(i + ' From total ' + online_models_dump.length);
             console.log('--------------------');
-            console.log(parsed_bio)
+            
             //res.json(parsed_bio)
             i++;
         }

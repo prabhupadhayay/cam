@@ -15,7 +15,7 @@ router.get('/fetch_media_items',async (req, res) => {
             const $ = cheerio.load(html);
             //console.log($);
             let devtoList1 = [];
-            $('.user_upload').each(function (i, elem) {
+            $('.userUpload').each(function (i, elem) {
                 devtoList1[i] = {
                     mediaTitle: $(this).find('.title').text(),
                     previewUrl: $(this).find('.title').prev('.preview').attr('src'),
@@ -30,6 +30,7 @@ router.get('/fetch_media_items',async (req, res) => {
                             return n != ""
                         })
                 }
+                console.log(mediaTitle)
             });
             res.send(devtoList1)
              console.log(devtoList1);
